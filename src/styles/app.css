@@ -1,0 +1,117 @@
+@import "tailwindcss";
+
+/* Enables `dark:` utility variants for any spot code opts into them.
+   Not required by the token-flip approach below (which uses plain CSS
+   cascade), but kept available for future use. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* LexFlow design tokens — deliberately restrained: a legal SaaS should read
+   as trustworthy paper-and-ink, not a consumer app. Deep ink navy for
+   authority, a single desaturated brass accent used sparingly (status,
+   focus, primary actions), warm neutral surfaces instead of stark white.
+
+   THEMING STRATEGY: every component uses these CSS custom properties
+   (bg-surface, text-ink-900, border-ink-200, etc.) rather than hardcoded
+   colors. Light mode is the default (:root); the `.dark` block below
+   redefines the SAME variable names with an inverted, dark-tuned palette.
+   Toggling the `dark` class on <html> (see src/lib/theme.tsx) flips the
+   whole app instantly via ordinary CSS cascade — no component needs a
+   `dark:` variant class, and no component needs to know which theme is
+   active. --color-ink-950 and --color-nav-* are the deliberate exceptions:
+   they back the sidebar/overlays, which are permanently dark navy in both
+   themes (see the comment above --color-nav-bg below). */
+@theme {
+  --color-ink-950: #0e1420;
+  --color-ink-900: #141b2b;
+  --color-ink-800: #1d2740;
+  --color-ink-700: #2a3655;
+  --color-ink-600: #3d4a6b;
+  --color-ink-500: #5b6a8f;
+  --color-ink-400: #8593b3;
+  --color-ink-300: #b3bcd4;
+  --color-ink-200: #d6dbe9;
+  --color-ink-100: #eceff6;
+  --color-ink-50: #f6f7fb;
+
+  --color-brass-600: #96742f;
+  --color-brass-500: #b08d3f;
+  --color-brass-400: #c7a558;
+  --color-brass-100: #f3ead2;
+
+  --color-surface: #fbfaf7;
+  --color-surface-raised: #ffffff;
+
+  --color-success: #2f6f4e;
+  --color-warning: #a3690f;
+  --color-danger: #a4342a;
+  --color-info: #2a5b8a;
+
+  /* Fixed navy sidebar/nav-rail tokens — deliberately NOT redefined under
+     .dark. The sidebar stays the same dark navy in both light and dark
+     mode (like most SaaS nav rails), so it needs its own tokens decoupled
+     from the ink-* scale that DOES flip below. Values equal the light-mode
+     ink-950/900/800/300/400 originals, so the sidebar looks unchanged from
+     before dark mode existed. */
+  --color-nav-bg: #0e1420;
+  --color-nav-bg-hover: #141b2b;
+  --color-nav-active: #1d2740;
+  --color-nav-border: #1d2740;
+  --color-nav-text: #d6dbe9;
+  --color-nav-text-muted: #b3bcd4;
+  --color-nav-icon-muted: #8593b3;
+
+  --font-display: "Source Serif 4", "Georgia", serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+
+/* Dark theme — redefines the content-area scale (ink-50..900, surface,
+   surface-raised) and brightens the status colors for legibility on dark
+   backgrounds. ink-950 and nav-* are intentionally absent here (see above). */
+.dark {
+  --color-surface: #0a0e17;
+  --color-surface-raised: #121826;
+
+  --color-ink-50: #1a2233;
+  --color-ink-100: #212b40;
+  --color-ink-200: #2b3650;
+  --color-ink-300: #3c4864;
+  --color-ink-400: #5a6690;
+  --color-ink-500: #8792b3;
+  --color-ink-600: #a6afc9;
+  --color-ink-700: #c3cade;
+  --color-ink-800: #dde2ef;
+  --color-ink-900: #f5f7fb;
+
+  --color-brass-100: #2c2513;
+
+  --color-success: #4f9d76;
+  --color-warning: #d18a2c;
+  --color-danger: #d9584c;
+  --color-info: #4f86bd;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  background-color: var(--color-surface);
+  color: var(--color-ink-900);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-brass-500);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

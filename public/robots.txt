@@ -1,0 +1,7 @@
+# LexFlow is an authenticated practice-management application, not a
+# public content site — there is nothing here worth search-engine
+# indexing, and the app behind /dashboard, /leads, etc. requires login
+# regardless of what a crawler does. Disallowing everything is the
+# correct choice for an app like this, not an oversight.
+User-agent: *
+Disallow: /
