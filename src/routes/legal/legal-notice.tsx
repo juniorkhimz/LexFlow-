@@ -1,20 +1,35 @@
-// Shared banner shown at the top of both legal pages. Not a component
-// choice — a deliberate one: these pages must never be mistaken for
-// reviewed, binding legal text. See README.md's commercial-readiness
-// checklist — "Terms of Service, Privacy Policy... need a lawyer, or a
-// business decision, and I can't do them" is still true after this file
-// exists. This gives you a real starting STRUCTURE (the sections a legal
-// SaaS handling client-privileged data typically needs to cover), not
-// legal advice or a compliant document.
+import type { ReactNode } from "react";
+
+// ── Edit these two values before launch ─────────────────────────────────
+// CONTACT_EMAIL must be a real, monitored address: data-protection law
+// generally requires a working contact for privacy requests.
+export const LEGAL_LAST_UPDATED = "13 October 2026";
+export const CONTACT_EMAIL = "privacy@your-domain.com";
+export const OPERATOR_NAME = "LexFlow LLP";
+
+// Shown at the top of both legal pages until a lawyer has reviewed them.
+// Remove <LegalNotice /> from privacy.tsx and terms.tsx once they have.
 export function LegalNotice() {
   return (
     <div className="mb-6 rounded-md border border-warning/30 bg-warning/10 p-4 text-sm text-ink-800">
-      <p className="font-medium text-warning">This is a placeholder, not a reviewed legal document.</p>
+      <p className="font-medium text-warning">Draft: pending legal review.</p>
       <p className="mt-1">
-        The structure below covers the sections a legal-SaaS handling client-privileged data typically needs, but
-        the actual wording must be reviewed by a lawyer familiar with your jurisdiction (e.g. Kenya's Data
-        Protection Act 2019, if that's your primary market) before this is shown to real customers.
+        This document describes how LexFlow works today. It has not yet been reviewed by a lawyer and may change
+        before launch. If you have questions, contact {CONTACT_EMAIL}.
       </p>
     </div>
   );
+}
+
+export function Section({ title, children }: { title: string; children: ReactNode }) {
+  return (
+    <section>
+      <h2 className="mb-1 font-medium text-ink-900">{title}</h2>
+      <div className="space-y-2">{children}</div>
+    </section>
+  );
+}
+
+export function BulletList({ children }: { children: ReactNode }) {
+  return <ul className="ml-5 list-disc space-y-1">{children}</ul>;
 }
