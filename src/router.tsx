@@ -7,7 +7,8 @@ import {
 } from "@tanstack/react-router";
 import { supabase } from "@/lib/supabase";
 import { AppShell } from "@/components/layout/app-shell";
-
+import LandingPage from "@/routes/landing/landing";
+import DemoPage from "@/routes/landing/demo";
 import LoginPage from "@/routes/login";
 import SignupPage from "@/routes/signup";
 import ResetPasswordPage from "@/routes/reset-password";
@@ -112,10 +113,17 @@ const indexRoute = createRoute({
   path: "/",
   beforeLoad: async () => {
     const { data } = await supabase.auth.getSession();
-    if (!data.session) throw redirect({ to: "/login" });
-    const profile = await requireProfile(); // throws its own redirect if missing
+    if (!data.session) return; // signed-out visitors see the landing page
+    const profile = await requireProfile();
     throw redirect({ to: profile.role === "client" ? "/portal" : "/dashboard" });
   },
+  component: LandingPage,
+});
+
+const demoRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/demo",
+  component: DemoPage,
 });
 
 const loginRoute = createRoute({
@@ -247,6 +255,7 @@ const trustAccountsRoute = createRoute({ getParentRoute: () => authedLayoutRoute
 
 const routeTree = rootRoute.addChildren([
   indexRoute,
+  demoRoute,
   loginRoute,
   signupRoute,
   resetPasswordRoute,

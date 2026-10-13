@@ -305,6 +305,45 @@ export type Database = {
           },
         ]
       }
+      demo_requests: {
+        Row: {
+          created_at: string
+          email: string
+          firm_name: string
+          firm_size: string | null
+          full_name: string
+          id: string
+          message: string | null
+          phone: string | null
+          preferred_date: string | null
+          status: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          firm_name: string
+          firm_size?: string | null
+          full_name: string
+          id?: string
+          message?: string | null
+          phone?: string | null
+          preferred_date?: string | null
+          status?: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          firm_name?: string
+          firm_size?: string | null
+          full_name?: string
+          id?: string
+          message?: string | null
+          phone?: string | null
+          preferred_date?: string | null
+          status?: string
+        }
+        Relationships: []
+      }
       documents: {
         Row: {
           category: Database["public"]["Enums"]["document_category"]
