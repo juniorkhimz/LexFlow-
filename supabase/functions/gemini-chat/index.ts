@@ -93,7 +93,7 @@ Deno.serve(async (req) => {
         body: JSON.stringify({
           systemInstruction: { parts: [{ text: SYSTEM_INSTRUCTION }] },
           contents: trimmed.map((m) => ({ role: m.role, parts: [{ text: m.text }] })),
-          generationConfig: { maxOutputTokens: 1024, temperature: 0.4 },
+          generationConfig: { maxOutputTokens: 2048, temperature: 0.4 },
         }),
       },
     );
