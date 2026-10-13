@@ -4,7 +4,7 @@ import type { ReactNode } from "react";
 // CONTACT_EMAIL must be a real, monitored address: data-protection law
 // generally requires a working contact for privacy requests.
 export const LEGAL_LAST_UPDATED = "13 October 2026";
-export const CONTACT_EMAIL = "privacy@your-domain.com";
+export const CONTACT_EMAIL = "lexflow.support@gmail.com";
 export const OPERATOR_NAME = "LexFlow LLP";
 
 // Shown at the top of both legal pages until a lawyer has reviewed them.
