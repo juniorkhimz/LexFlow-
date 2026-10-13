@@ -147,8 +147,7 @@ function Kpi({ label, value }: { label: string; value: React.ReactNode }) {
     <Card>
       <CardContent className="py-4">
         <p className="text-xs font-medium uppercase tracking-wide text-ink-500">{label}</p>
-        <p className="mt-1 font-display text-2xl font-semibold text-ink-900">{value}</p>
-      </CardContent>
+        <p className="mt-1 break-words font-display text-xl font-semibold text-ink-900 sm:text-2xl">{value}</p>      </CardContent>
     </Card>
   );
 }
@@ -220,7 +219,7 @@ export default function DashboardPage() {
       ) : kpis.isError ? (
         <ErrorState message="Unable to load dashboard metrics." onRetry={() => kpis.refetch()} />
       ) : (
-        <div className="mb-6 grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-6">
+        <div className="mb-6 grid grid-cols-2 gap-3 md:grid-cols-3">
           <Kpi label="Total leads" value={kpis.data.totalLeads} />
           <Kpi label="Active matters" value={kpis.data.activeMatters} />
           <Kpi label="Open quotes" value={kpis.data.openQuotes} />
