@@ -81,7 +81,7 @@ export default function LandingPage() {
       <main>
         {/* Hero: full-width photo behind the text. Save the photo as public/images/law-hero.jpg
             (wide, 1920px+ across). If the file is missing, the hero still works on plain navy. */}
-        <section className="relative isolate overflow-hidden">
+        <section className="relative isolate flex min-h-[calc(100svh-4.5rem)] items-center overflow-hidden">
           {!heroMissing && (
             <img
               src="/images/law-hero.jpg"
@@ -95,7 +95,7 @@ export default function LandingPage() {
           <div aria-hidden className="absolute inset-0 -z-10 bg-ink-950/50 md:hidden" />
           <div aria-hidden className="absolute inset-x-0 bottom-0 -z-10 h-32 bg-gradient-to-t from-ink-950 to-transparent" />
 
-          <div className="mx-auto max-w-6xl px-4 py-24 md:py-36">
+          <div className="mx-auto w-full max-w-6xl px-4 py-16 md:py-24">
             <p className="mb-5 inline-block rounded-full bg-brass-500 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-ink-950">
               Law firms · Advocates · Clients
             </p>
