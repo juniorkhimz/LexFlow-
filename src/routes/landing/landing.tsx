@@ -3,7 +3,6 @@ import { Link } from "@tanstack/react-router";
 import { ArrowRight, Briefcase, CalendarClock, FileText, Menu, Receipt, Sparkles, Users, X } from "lucide-react";
 import { useDocumentTitle } from "@/hooks/use-document-title";
 import { CONTACT_EMAIL } from "@/routes/legal/legal-notice";
-import { BrandedPhoto } from "@/routes/landing/branded-photo";
 
 // Brand name lives here so a rename is a one-line change.
 const BRAND = "LexFlow";
@@ -44,6 +43,7 @@ export default function LandingPage() {
   useDocumentTitle("Legal Practice Management");
   const [open, setOpen] = useState(false);
   const [shotMissing, setShotMissing] = useState(false);
+  const [heroMissing, setHeroMissing] = useState(false);
 
   return (
     <div className="min-h-screen bg-ink-950 text-white">
@@ -79,33 +79,44 @@ export default function LandingPage() {
       </header>
 
       <main>
-        <section className="mx-auto max-w-6xl px-4 py-16 text-center md:py-24">
-          <h1 className="mx-auto max-w-3xl font-display text-4xl font-semibold leading-tight md:text-5xl">
-            Modern Legal Practice Management, Simplified.
-          </h1>
-          <p className="mx-auto mt-5 max-w-2xl text-white/70">
-            Run your law firm with greater clarity and control. Manage clients, cases, deadlines, documents,
-            billing and everyday legal operations from one workspace.
-          </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <Link to="/signup" className={gold}>Get Started <ArrowRight size={16} aria-hidden /></Link>
-            <Link to="/demo" className={ghost}>Book a Demo</Link>
-          </div>
-          <ul className="mx-auto mt-10 grid max-w-3xl gap-3 text-sm text-brass-400 sm:grid-cols-3">
-            {["Centralized case management", "Smarter deadline tracking", "Simplified billing"].map((t) => (
-              <li key={t} className="rounded-md border border-white/10 px-4 py-3">{t}</li>
-            ))}
-          </ul>
-        </section>
+        {/* Hero: full-width photo behind the text. Save the photo as public/images/law-hero.jpg
+            (wide, 1920px+ across). If the file is missing, the hero still works on plain navy. */}
+        <section className="relative isolate overflow-hidden">
+          {!heroMissing && (
+            <img
+              src="/images/law-hero.jpg"
+              alt=""
+              aria-hidden
+              onError={() => setHeroMissing(true)}
+              className="absolute inset-0 -z-20 h-full w-full object-cover object-center"
+            />
+          )}
+          <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-r from-ink-950 via-ink-950/80 to-ink-950/30" />
+          <div aria-hidden className="absolute inset-0 -z-10 bg-ink-950/50 md:hidden" />
+          <div aria-hidden className="absolute inset-x-0 bottom-0 -z-10 h-32 bg-gradient-to-t from-ink-950 to-transparent" />
 
-        {/* Photo: save it as public/images/law-hero.jpg. Hides itself until the file exists.
-            For a full-width wide banner instead of a portrait card, delete the className line. */}
-        <BrandedPhoto
-          src="/images/law-hero.jpg"
-          alt="Scales of justice, a gavel and law books on a desk"
-          mark={BRAND}
-          className="mx-auto h-[36rem] max-w-sm"
-        />
+          <div className="mx-auto max-w-6xl px-4 py-24 md:py-36">
+            <p className="mb-5 inline-block rounded-full bg-brass-500 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-ink-950">
+              Law firms · Advocates · Clients
+            </p>
+            <h1 className="max-w-2xl font-display text-4xl font-semibold leading-tight md:text-6xl">
+              Modern Legal Practice Management, Simplified.
+            </h1>
+            <p className="mt-5 max-w-xl text-lg text-white/80">
+              Run your law firm with greater clarity and control. Manage clients, cases, deadlines, documents,
+              billing and everyday legal operations from one workspace.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link to="/signup" className={gold}>Get Started <ArrowRight size={16} aria-hidden /></Link>
+              <Link to="/demo" className={ghost}>Book a Demo</Link>
+            </div>
+            <ul className="mt-12 grid max-w-3xl gap-3 text-sm text-brass-400 sm:grid-cols-3">
+              {["Centralized case management", "Smarter deadline tracking", "Simplified billing"].map((t) => (
+                <li key={t} className="rounded-md border border-white/15 bg-ink-950/40 px-4 py-3 backdrop-blur-sm">{t}</li>
+              ))}
+            </ul>
+          </div>
+        </section>
 
         {!shotMissing && (
           <section aria-labelledby="preview" className="mx-auto max-w-6xl px-4 pb-16">
