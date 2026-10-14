@@ -81,7 +81,7 @@ export default function LandingPage() {
       <main>
         {/* Hero: full-width photo behind the text. Save the photo as public/images/law-hero.jpg
             (wide, 1920px+ across). If the file is missing, the hero still works on plain navy. */}
-        <section className="relative isolate flex min-h-[calc(100svh-4.5rem)] items-center overflow-hidden">
+        <section className="relative isolate flex min-h-[calc(100svh-4.8rem)] items-center overflow-hidden">
           {!heroMissing && (
             <img
               src="/images/law-hero.jpg"
