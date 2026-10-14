@@ -3,6 +3,8 @@ import { Link } from "@tanstack/react-router";
 import { ArrowRight, Briefcase, CalendarClock, FileText, Menu, Receipt, Sparkles, Users, X } from "lucide-react";
 import { useDocumentTitle } from "@/hooks/use-document-title";
 import { CONTACT_EMAIL } from "@/routes/legal/legal-notice";
+import { BrandedPhoto } from "@/routes/landing/branded-photo";
+
 // Brand name lives here so a rename is a one-line change.
 const BRAND = "LexFlow";
 
@@ -96,22 +98,31 @@ export default function LandingPage() {
           </ul>
         </section>
 
-{!shotMissing && (
-  <section aria-labelledby="preview" className="mx-auto max-w-6xl px-4 pb-16">
-    <h2 id="preview" className="mb-6 text-center font-display text-2xl font-semibold">
-      One workspace. Better-organized legal operations.
-    </h2>
-    <div className="overflow-hidden rounded-xl border border-white/10 bg-[#141b2b]">
-      <img
-        src="/screenshots/dashboard.png"
-        alt={`The ${BRAND} dashboard`}
-        loading="lazy"
-        onError={() => setShotMissing(true)}
-        className="w-full"
-      />
-    </div>
-  </section>
-)}
+        {/* Photo: save it as public/images/law-hero.jpg. Hides itself until the file exists.
+            For a full-width wide banner instead of a portrait card, delete the className line. */}
+        <BrandedPhoto
+          src="/images/law-hero.jpg"
+          alt="Scales of justice, a gavel and law books on a desk"
+          mark={BRAND}
+          className="mx-auto h-[36rem] max-w-sm"
+        />
+
+        {!shotMissing && (
+          <section aria-labelledby="preview" className="mx-auto max-w-6xl px-4 pb-16">
+            <h2 id="preview" className="mb-6 text-center font-display text-2xl font-semibold">
+              One workspace. Better-organized legal operations.
+            </h2>
+            <div className="overflow-hidden rounded-xl border border-white/10 bg-[#141b2b]">
+              <img
+                src="/screenshots/dashboard.png"
+                alt={`The ${BRAND} dashboard`}
+                loading="lazy"
+                onError={() => setShotMissing(true)}
+                className="w-full"
+              />
+            </div>
+          </section>
+        )}
 
         <section id="about" className="border-y border-white/10 bg-[#141b2b] py-16">
           <div className="mx-auto max-w-6xl px-4">
