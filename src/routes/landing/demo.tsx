@@ -4,7 +4,7 @@ import { supabase } from "@/lib/supabase";
 import { useDocumentTitle } from "@/hooks/use-document-title";
 
 type Status = "idle" | "sending" | "done" | "error";
-const field = "mt-1 w-full rounded-md border border-white/20 bg-ink-900 px-3 py-2 text-white focus:border-brass-400 focus:outline-none";
+const field = "mt-1 w-full rounded-md border border-white/20 bg-[#141b2b] px-3 py-2 text-white focus:border-brass-400 focus:outline-none";
 
 function validate(f: FormData): Record<string, string> {
   const e: Record<string, string> = {};

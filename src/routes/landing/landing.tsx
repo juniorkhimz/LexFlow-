@@ -101,7 +101,7 @@ export default function LandingPage() {
     <h2 id="preview" className="mb-6 text-center font-display text-2xl font-semibold">
       One workspace. Better-organized legal operations.
     </h2>
-    <div className="overflow-hidden rounded-xl border border-white/10 bg-ink-900">
+    <div className="overflow-hidden rounded-xl border border-white/10 bg-[#141b2b]">
       <img
         src="/screenshots/dashboard.png"
         alt={`The ${BRAND} dashboard`}
@@ -113,7 +113,7 @@ export default function LandingPage() {
   </section>
 )}
 
-        <section id="about" className="border-y border-white/10 bg-ink-900 py-16">
+        <section id="about" className="border-y border-white/10 bg-[#141b2b] py-16">
           <div className="mx-auto max-w-6xl px-4">
             <h2 className="mb-2 text-center font-display text-2xl font-semibold">Less juggling, more practice</h2>
             <p className="mx-auto mb-8 max-w-2xl text-center text-white/60">
@@ -143,7 +143,7 @@ export default function LandingPage() {
           </div>
         </section>
 
-        <section id="solutions" className="border-y border-white/10 bg-ink-900 py-16">
+        <section id="solutions" className="border-y border-white/10 bg-[#141b2b] py-16">
           <div className="mx-auto max-w-6xl px-4">
             <h2 className="mb-8 text-center font-display text-2xl font-semibold">Who it's for</h2>
             <div className="grid gap-4 md:grid-cols-3">
